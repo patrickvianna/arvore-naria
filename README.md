@@ -12,6 +12,6 @@ Trabalho da disciplina de estrutura de dados 2 sobre Árvores n-Arias
   * Destroi - remove todos elementos da arvore
 
 - Para:
- * Vetor de apontadores
- * Filho esquerdo - irmão direito
- * Lista de filhos
+  * Vetor de apontadores
+  * Filho esquerdo - irmão direito
+  * Lista de filhos
