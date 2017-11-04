@@ -21,7 +21,7 @@ class ArvVetorApont(object):
             for x in self.filhos:
                 if (x.estaArvNaria(info) == True):
                     return True
-                
+
             return False
 
 
@@ -30,6 +30,9 @@ class ArvVetorApont(object):
         for x in self.filhos:
             print (x.info)
 
+    #retorna a subarvore
+    def subArvNaria(self):
+        return self.filhos
 
     def teste (self):
         print ("oi " + self.info)
