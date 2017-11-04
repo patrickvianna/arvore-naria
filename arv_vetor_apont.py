@@ -34,5 +34,13 @@ class ArvVetorApont(object):
     def subArvNaria(self):
         return self.filhos
 
+    #retorna se a arvore é vazia
+    def vazioArvNaria(self):
+        if (self.info == None and len(self.filhos) == 0):
+            return True
+        else:
+            return False
+
+
     def teste (self):
         print ("oi " + self.info)
