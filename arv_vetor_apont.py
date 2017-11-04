@@ -3,9 +3,11 @@ class ArvVetorApont(object):
     info = None     #informação a ser armazenada
     filhos = None     #subárvores filhas
 
-    def __init__(self, info): #cria uma árvore vazia
-        self.info = info
+    def __init__(self): #cria uma árvore vazia
         self.filhos = []
+
+    def criarArvNaria(self, info):
+        self.info = info
 
     #pesquisa info na arvore
     def estaArvNaria(self, info):
@@ -24,14 +26,39 @@ class ArvVetorApont(object):
 
             return False
 
+    #retorna subArvore da Arvore
+    def subArvoreNaria(self, info):
+        if (self.info == info):
+            return self
+        else:
+            #percorre pelos filhos e vê se algum possui o valor
+            for x in self.filhos:
+                if (x.info == info):
+                    return x
+
+            #olha os filhos dos filhos
+            for x in self.filhos:
+                if (x.subArvoreNaria(info) != None):
+                    return x
+
+            return None
+
+    #inserir subarvore como filho de info
+    def insereSubArvore(self, subArvore, info):
+        sub = self.subArvoreNaria(info)
+        if (sub == None):
+            return False
+        else:
+            sub.filhos.append(subArvore)
+            return True
 
     #imprme os filhos
     def listaFilhos(self):
         for x in self.filhos:
             print (x.info)
 
-    #retorna a subarvore
-    def subArvNaria(self):
+    #retorna os filhos
+    def filhosArvNaria(self):
         return self.filhos
 
     #retorna se a arvore é vazia
@@ -40,6 +67,16 @@ class ArvVetorApont(object):
             return True
         else:
             return False
+
+    #imprimir arvore
+    def imprimirArvNaria(self):
+        print(str(self.info) + " -> ", end="")
+        for x in self.filhos:
+            print(str(x.info) + " , ", end="")
+        print("");
+
+        for x in self.filhos:
+            x.imprimirArvNaria()
 
 
     def teste (self):
