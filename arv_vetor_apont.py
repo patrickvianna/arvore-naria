@@ -26,7 +26,7 @@ class ArvVetorApont(object):
 
             return False
 
-    #retorna subArvore da Arvore
+    #retorna subArvore da Arvore com informação = info
     def subArvoreNaria(self, info):
         if (self.info == info):
             return self
@@ -38,8 +38,9 @@ class ArvVetorApont(object):
 
             #olha os filhos dos filhos
             for x in self.filhos:
-                if (x.subArvoreNaria(info) != None):
-                    return x
+                subSubArvore = x.subArvoreNaria(info)
+                if (subSubArvore != None):
+                    return subSubArvore
 
             return None
 
