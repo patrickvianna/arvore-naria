@@ -1,4 +1,4 @@
-from arv_vetor_apont import ArvVetorApont #importamos uma classe
+from arv_Lista import ArvVetorApont #importamos uma classe
 import time
 
 def cls():
