@@ -49,26 +49,27 @@ class ArvFilhoEsqIrmaoDir:
             p.exibirArvoreNaria()
             p = p.irmaoDir
 
-       print(")", end="")
+       print(") ", end="")
 
     def excluirNo(self, no):
         if self is None: return
         excluido = self.buscarNo(no)
         if excluido is None: return False
         else:
-            excluido.excluirFilhosNo()
+            excluido = excluido.excluirFilhosNo()
+
+        return
 
     def excluirFilhosNo(self):
-        if self is None: return
-        if self.filhoEsq is None:
-            self = None
-            return
-        p = self.filhoEsq
-        while p.irmaoDir:
+        if (self.filhoEsq is not None):
+            print ("Pai:" + str(self.info) + " - Filho:" + str(self.filhoEsq.info))
+            self.filhoEsq = self.filhoEsq.excluirFilhosNo()
 
-            p = p.irmaoDir
-        p.excluirFilhosNo()
-        return
+        if (self.irmaoDir is not None):
+            print ("Pai:" + str(self.info) + " - Irmao:" + str(self.irmaoDir.info))
+            self.v = self.irmaoDir.excluirFilhosNo()
+
+        return None
 
 
 
