@@ -1,5 +1,5 @@
 
-class ArvVetorApont(object):
+class ArvLista(object):
     info = None     #informação a ser armazenada
     filhos = None     #subárvores filhas
 
@@ -79,6 +79,20 @@ class ArvVetorApont(object):
         for x in self.filhos:
             x.imprimirArvNaria()
 
+    #remove subarvore
+    def removerNo (self, info):
+        if (self.info == info):
+            self = None
+        else:
+            # percorre pelos filhos e vê se algum possui o valor
+            for x in self.filhos:
+                if (x.info == info):
+                    self.filhos.remove(x)
+                    return True
 
-    def teste (self):
-        print ("oi " + self.info)
+            # olha os filhos dos filhos
+            for x in self.filhos:
+                if (x.removerNo(info) == True):
+                    return True
+
+            return False
