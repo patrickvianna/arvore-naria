@@ -1,27 +1,7 @@
 from arv_filho_esquerda_irmao_direita import ArvFilhoEsqIrmaoDir
+import os
 def cls():
     print("\n" * 100)
-
-
-'''
-r = ArvFilhoEsqIrmaoDir()
-
-r.criarArvoreNaria(0)
-r.inserirArvoreNaria(0, 1)
-r.inserirArvoreNaria(0, 2)
-r.inserirArvoreNaria(0, 3)
-r.inserirArvoreNaria(3, 4)
-r.inserirArvoreNaria(4, 5)
-r.inserirArvoreNaria(3, 6)
-r.inserirArvoreNaria(6, 7)
-r.inserirArvoreNaria(6, 8)
-r.inserirArvoreNaria(7, 9)
-r.exibirArvoreNaria()
-print("")
-r.excluirNo(6)
-print("")
-r.exibirArvoreNaria()
-'''
 
 print( "############################################################")
 print("MENU :::: ARVORE N-ARIA :::: FILHO ESQUERDA - IRMAO DIREITA \n")
@@ -38,15 +18,51 @@ controle = 9
 while(controle != 0 ):
     print( "############################################################")
     print("MENU :::: ARVORE N-ARIA :::: FILHO ESQUERDA - IRMAO DIREITA \n")
-    print("1 - INSEROR NO")
+    print("1 - INSERIR NO")
     print("2 - EXCLUIR NO")
+    print("3 - EXIBIR ARVORE ")
     print("0 - SAIR")
     print( "############################################################\n\n")
 
     controle = int(input("RESPOSTA:: "))
 
+    #<editor-fold desc="[[  INSERIR  ]]">
     if controle == 1:
-        print("INSERIR EM QUAL NÓ?")
+        no = int(input("INSERIR EM QUAL NÓ?  "))
+        info = int(input("QUAL VALOR?  "))
+        retorno = raiz.inserirArvoreNaria(no, info)
+        if retorno:
+            cls()
+            print("INSERIDO COM SUCESSO!!! \n")
+            os.system('pause')
+            cls()
+        else:
+            cls()
+            print("NAO EXISTE ESSE NO")
+            os.system('pause')
+            cls()
+
+    if controle == 2:
+        no = int(input("EXCLUIR QUAL NO?  "))
+        resultado = raiz.excluirNo(no)
+        if resultado:
+            cls()
+            print("EXCLUIDO COM SUCESSO!!! \n")
+            os.system('pause')
+            cls()
+        else:
+            cls()
+            print("NAO FOI POSSIVEL EXCLUIR O NO")
+            os.system('pause')
+            cls()
+
+    if controle == 3:
+        cls()
+        print("ARVORE:: ")
+        resultado = raiz.exibirArvoreNaria()
+        print("")
+        os.system('pause')
+        cls()
 else:
     print("FALOU!")
 
