@@ -59,9 +59,8 @@ class ArvFilhoEsqIrmaoDir:
             p = p.irmaoDir
         print(") ", end="")
         return True
-
-
     #endregion
+    '''
     # region [[  EXCLUIR NO  ]]
     def excluirNo(self, no):
         if self is None: return False
@@ -70,10 +69,49 @@ class ArvFilhoEsqIrmaoDir:
             return False
         else:
             excluido = excluido.excluirFilhosNo()
+            if (self.filhoEsq == no):
+                self.filhoEsq = None
+            elif (self.irmaoDir == no):
+                self.irmaoDir = None
             return True
 
         return
 
+    #endregion
+'''
+
+    #region [[Buscar No para Exluir - Bruno]]
+    def buscarNoParaExcluir(self, no):
+        info = self.info
+        if self is None: return
+        if (self.irmaoDir is not None):
+            if self.irmaoDir.info == no: return self
+        if (self.filhoEsq is not None):
+            if self.filhoEsq.info == no: return self
+        p = self.filhoEsq
+        while p:
+            resp = p.buscarNoParaExcluir(no)
+            if resp: return resp
+            p = p.irmaoDir
+        return None
+    #endregion
+
+    #region [[ EXCLUIR NO 2 - Bruno ]]
+    def excluirNo(self, no):
+        noRemover = None
+        if self is None: return False
+        excluido = self.buscarNoParaExcluir(no)
+        if excluido is None:
+            return False
+        else:
+            if (excluido.filhoEsq is not None and excluido.filhoEsq.info == no):
+                noRemover = excluido.filhoEsq
+                excluido.filhoEsq = None
+            elif (excluido.irmaoDir is not None and excluido.irmaoDir.info == no):
+                noRemover = excluido.irmaoDir
+                excluido.irmaoDir = None
+            noRemover = noRemover.excluirFilhosNo()
+            return True
     #endregion
 
     #region [[  EXCLUIR FILHOS  ]]
