@@ -3,6 +3,7 @@ class ArvVetorApont(object):
     info = None     #informação a ser armazenada
     filhos = None     #subárvores filhas
     limite = 0        #limite de filhos
+    infoPai = None    #atributo para ter uma referencia do pai
 
     def __init__(self): #cria uma árvore vazia
         self.filhos = []
@@ -86,11 +87,23 @@ class ArvVetorApont(object):
             x.imprimirArvNaria()
 
     #remover subArvore
-    def removerNo(self,noPai,noRemover):
-        pai = self.subArvoreNaria(noPai) #Busca o pai
-        filho = self.subArvoreNaria(noRemover) #Busca o no a remover
-        if pai == None or filho == None: #Se pai ou o no a remover for null retorna 0
+    def removerNo(self,noRemover):
+        no = self.subArvoreNaria(noRemover) #Busca o no a ser removido
+        pai = self.subArvoreNaria(no.infoPai) #Busca o pai do no a ser removido
+
+        if no == None: #Se no a remover for null retorna 0
             return 0
         else:
-            pai.filhos.remove(filho) #removo da lista de filho do pai a subArvore filho e retorno 1
+            pai.filhos.remove(no) #removo da lista de filho do pai a subArvore no e retorno 1
             return 1
+
+    def DestruirArvore(self):
+
+        i = 0
+        while i < len(self.filhos): #remover todos os filho da raiz
+            self.filhos.pop()
+
+        if len(self.filhos) == 0: #se a raiz tive 0 filhos retorna true se nao false
+            return True
+        else:
+            return False
