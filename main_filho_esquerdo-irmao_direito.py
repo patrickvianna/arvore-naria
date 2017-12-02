@@ -83,9 +83,12 @@ while(controle != 0 ):
         cls()
     elif controle == 5:
         raiz.exibirArvoreNaria()
-        resultado = raiz.excluirNo(raiz.filhoEsq.info)
+        if (raiz.filhoEsq is not None):
+            resultado = raiz.excluirNo(raiz.filhoEsq.info)
+        else:
+            raiz = None
+            resultado = True
         if resultado:
-            raiz.exibirArvoreNaria()
             raiz = None
             cls()
             print("ARVORE VAZIA!")
