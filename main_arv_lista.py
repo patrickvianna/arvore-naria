@@ -10,6 +10,7 @@ def print_menu():
     print("2. Remover")
     print("3. Exibir")
     print("4. Esta na arvore")
+    print("5. Limpar arvore")
     print("0. Exit")
 
 if __name__ == "__main__":
@@ -73,6 +74,11 @@ if __name__ == "__main__":
                 print ("TRUE - Este no esta na arvore!    =)")
             else:
                 print ("FALSE - Este no NAO esta na arvore!   =(")
+
+        elif opcao == 5:
+            cls()
+            arvPrincipal.removerNo(arvPrincipal.info)
+            arvPrincipal = None
 
         elif opcao == 0:
 
