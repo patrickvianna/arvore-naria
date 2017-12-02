@@ -49,6 +49,18 @@ class ArvFilhoEsqIrmaoDir:
         return None
 
     # endregion
+    # region [[  ESTA NA ARVORE  ]]
+    def existeNo(self, no):
+        if self is None: return
+        if self.info == no: return True
+        p = self.filhoEsq
+        while p:
+            resp = p.buscarNo(no)
+            if resp: return True
+            p = p.irmaoDir
+        return False
+
+    # endregion
     #region [[  EXIBIR  ]]
     def exibirArvoreNaria(self):
         if self is None: return False
@@ -60,33 +72,13 @@ class ArvFilhoEsqIrmaoDir:
         print(") ", end="")
         return True
     #endregion
-    '''
-    # region [[  EXCLUIR NO  ]]
-    def excluirNo(self, no):
-        if self is None: return False
-        excluido = self.buscarNo(no)
-        if excluido is None:
-            return False
-        else:
-            excluido = excluido.excluirFilhosNo()
-            if (self.filhoEsq == no):
-                self.filhoEsq = None
-            elif (self.irmaoDir == no):
-                self.irmaoDir = None
-            return True
-
-        return
-
-    #endregion
-'''
-
-    #region [[Buscar No para Exluir - Bruno]]
+    #region [[  BUSCAR NO PARA EXCLUIR  ]]
     def buscarNoParaExcluir(self, no):
         info = self.info
         if self is None: return
-        if (self.irmaoDir is not None):
+        if self.irmaoDir is not None:
             if self.irmaoDir.info == no: return self
-        if (self.filhoEsq is not None):
+        if self.filhoEsq is not None:
             if self.filhoEsq.info == no: return self
         p = self.filhoEsq
         while p:
@@ -95,8 +87,7 @@ class ArvFilhoEsqIrmaoDir:
             p = p.irmaoDir
         return None
     #endregion
-
-    #region [[ EXCLUIR NO 2 - Bruno ]]
+    #region [[ EXCLUIR NO  ]]
     def excluirNo(self, no):
         noRemover = None
         if self is None: return False
@@ -104,27 +95,21 @@ class ArvFilhoEsqIrmaoDir:
         if excluido is None:
             return False
         else:
-            if (excluido.filhoEsq is not None and excluido.filhoEsq.info == no):
+            if excluido.filhoEsq is not None and excluido.filhoEsq.info == no:
                 noRemover = excluido.filhoEsq
                 excluido.filhoEsq = None
-            elif (excluido.irmaoDir is not None and excluido.irmaoDir.info == no):
+            elif excluido.irmaoDir is not None and excluido.irmaoDir.info == no:
                 noRemover = excluido.irmaoDir
                 excluido.irmaoDir = None
             noRemover = noRemover.excluirFilhosNo()
             return True
     #endregion
-
     #region [[  EXCLUIR FILHOS  ]]
     def excluirFilhosNo(self):
         if (self.filhoEsq is not None):
-            print("Pai:" + str(self.info) + " - Filho:" + str(self.filhoEsq.info))
             self.filhoEsq = self.filhoEsq.excluirFilhosNo()
 
         if (self.irmaoDir is not None):
-            print("Pai:" + str(self.info) + " - Irmao:" + str(self.irmaoDir.info))
             self.v = self.irmaoDir.excluirFilhosNo()
-
         return None
-
-
     #endregion

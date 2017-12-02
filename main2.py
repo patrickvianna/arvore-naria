@@ -21,12 +21,14 @@ while(controle != 0 ):
     print("1 - INSERIR NO")
     print("2 - EXCLUIR NO")
     print("3 - EXIBIR ARVORE ")
+    print("4 - ESTA NA AVORE ")
+    print("5 - LIMPAR ARVORE ")
     print("0 - SAIR")
     print( "############################################################\n\n")
 
     controle = int(input("RESPOSTA:: "))
 
-    #<editor-fold desc="[[  INSERIR  ]]">
+
     if controle == 1:
         no = int(input("INSERIR EM QUAL NÓ?  "))
         info = int(input("QUAL VALOR?  "))
@@ -41,28 +43,54 @@ while(controle != 0 ):
             print("NAO EXISTE ESSE NO")
             os.system('pause')
             cls()
-
-    if controle == 2:
+    elif controle == 2:
         no = int(input("EXCLUIR QUAL NO?  "))
-        resultado = raiz.excluirNo(no)
-        if resultado:
+        if no == raiz.info:
+            raiz.excluirNo(raiz.filhoEsq.info)
+            raiz = None
             cls()
-            print("EXCLUIDO COM SUCESSO!!! \n")
+            print("ARVORE VAZIA!!")
             os.system('pause')
-            cls()
+            controle = 0
         else:
-            cls()
-            print("NAO FOI POSSIVEL EXCLUIR O NO")
-            os.system('pause')
-            cls()
-
-    if controle == 3:
+            resultado = raiz.excluirNo(no)
+            if resultado:
+                cls()
+                print("EXCLUIDO COM SUCESSO!!! \n")
+                os.system('pause')
+                cls()
+            else:
+                cls()
+                print("NAO FOI POSSIVEL EXCLUIR O NO")
+                os.system('pause')
+                cls()
+    elif controle == 3:
         cls()
         print("ARVORE:: ")
         resultado = raiz.exibirArvoreNaria()
         print("")
         os.system('pause')
         cls()
+    elif controle == 4:
+        no = int(input("VERIFICAR QUAL NO? "))
+        resultado = raiz.existeNo(no)
+        if resultado:
+            print("NO EXISTE NA ARVORE!! ")
+        else:
+            print("NO NAO EXISTE NA ARVORE!! ")
+
+        os.system('pause')
+        cls()
+    elif controle == 5:
+        raiz.exibirArvoreNaria()
+        resultado = raiz.excluirNo(raiz.filhoEsq.info)
+        if resultado:
+            raiz.exibirArvoreNaria()
+            raiz = None
+            cls()
+            print("ARVORE VAZIA!")
+            os.system('pause')
+            controle = 0
 else:
     print("FALOU!")
 
