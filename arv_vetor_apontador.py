@@ -81,7 +81,7 @@ class ArvVetorApont(object):
         print(str(self.info) + " -> ", end="")
         for x in self.filhos:
             print(str(x.info) + " , ", end="")
-        print("");
+        print("")
 
         for x in self.filhos:
             x.imprimirArvNaria()
@@ -94,7 +94,8 @@ class ArvVetorApont(object):
         if no == None: #Se no a remover for null retorna 0
             return 0
         else:
-            pai.filhos.remove(no) #removo da lista de filho do pai a subArvore no e retorno 1
+            if (pai is not None):
+                pai.filhos.remove(no) #removo da lista de filho do pai a subArvore no e retorno 1
             return 1
 
     def DestruirArvore(self):

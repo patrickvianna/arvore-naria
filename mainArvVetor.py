@@ -56,7 +56,11 @@ if __name__ == "__main__":
 
                 cls()
                 no = input("Digite o no que quer remover: ")
-                result = arvPrincipal.removerNo(no)
+                if (arvPrincipal.info == no):
+                    arvPrincipal = None
+                    result = 1
+                else:
+                    result = arvPrincipal.removerNo(no)
                 if result == 0:
                     print("Erro! alguma informacao errada.")
                 elif result == 1:
@@ -66,7 +70,7 @@ if __name__ == "__main__":
 
                 cls()
                 if arvPrincipal == None:
-                    print("Erro, não existi arvore")
+                    print("Erro, não existe arvore")
                 else:
                     arvPrincipal.imprimirArvNaria()
 
